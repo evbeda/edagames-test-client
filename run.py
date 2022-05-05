@@ -1,7 +1,6 @@
 import asyncio
 import json
 from random import randint
-import time
 import sys
 import websockets
 
@@ -18,8 +17,7 @@ async def send(websocket, action, data):
 
 
 async def start(auth_token):
-    uri = "ws://localhost:8001/ws?token={}".format(auth_token)
-    # uri = "wss://4yyity02md.execute-api.us-east-1.amazonaws.com/ws?token={}".format(auth_token)
+    uri = "wss://4yyity02md.execute-api.us-east-1.amazonaws.com/ws?token={}".format(auth_token)
     while True:
         try:
             print('connection to {}'.format(uri))
@@ -63,7 +61,7 @@ async def play(websocket):
 
 
 async def process_your_turn(websocket, request_data):
-    if randint(0, 4) > 0:
+    if randint(0, 4) >= 1:
         await process_move(websocket, request_data)
     else:
         await process_wall(websocket, request_data)
